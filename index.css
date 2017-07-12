@@ -1,0 +1,61 @@
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent; }
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0; }
+
+ul {
+  list-style: none; }
+
+#page-bar {
+  z-index: 10;
+  color: white;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0); }
+  #page-bar ul {
+    padding: 0; }
+    #page-bar ul li {
+      display: inline-block; }
+
+#app {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid black; }
+
+.Y-slide {
+  width: 100vw;
+  height: 100vh; }
+
+.X-slide {
+  border: 1px solid red;
+  width: 100vw;
+  min-height: 100vh; }
+  .X-slide .slide {
+    width: 100vw;
+    height: 100vh; }
+
+@media screen and (max-width: 596px) {
+  .X-slide {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    max-height: 100vh; }
+    .X-slide .slider {
+      font-size: 0;
+      width: 300vw;
+      height: 100vw; }
+      .X-slide .slider .slide {
+        font-size: normal;
+        display: inline-block; } }
+
+/*# sourceMappingURL=index.css.map */
