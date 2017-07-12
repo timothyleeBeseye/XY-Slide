@@ -3,7 +3,24 @@
   height: 0px;
   background: transparent; }
 
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+  0% {
+    padding-top: 0px; }
+  50% {
+    padding-top: 10px; }
+  0% {
+    padding-top: 0; } }
+/* Standard syntax */
+@keyframes mymove {
+  0% {
+    padding-top: 0px; }
+  50% {
+    padding-top: 10px; }
+  0% {
+    padding-top: 0; } }
 body {
+  font-family: Arial;
   width: 100%;
   height: 100%;
   margin: 0; }
@@ -15,35 +32,63 @@ ul {
   z-index: 10;
   color: white;
   position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translate(-50%, 0); }
+  right: 10px;
+  bottom: 50%;
+  -ms-transform: translate(0, 50%);
+  -moz-transform: translate(0, 50%);
+  -webkit-transform: translate(0, 50%);
+  transform: translate(0, 50%); }
   #page-bar ul {
+    text-align: center;
     padding: 0; }
     #page-bar ul li {
-      display: inline-block; }
+      font-size: 15px;
+      margin: 10px; }
 
 #app {
+  -ms-overflow-style: none;
   overflow-y: scroll;
   overflow-x: hidden;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  border: 1px solid black; }
+  height: 100vh; }
 
 .Y-slide {
+  position: relative;
+  z-index: 100;
   width: 100vw;
   height: 100vh; }
 
 .X-slide {
-  border: 1px solid red;
   width: 100vw;
   min-height: 100vh; }
   .X-slide .slide {
+    position: relative;
     width: 100vw;
     height: 100vh; }
+
+.center-area {
+  border: 1px solid white;
+  padding-top: 120px;
+  width: 100vw;
+  height: 300px;
+  font-size: 23px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: white;
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+  .center-area i {
+    width: 20px;
+    height: 20px;
+    animation: mymove 0.8s infinite;
+    color: white; }
 
 @media screen and (max-width: 596px) {
   .X-slide {
@@ -56,6 +101,17 @@ ul {
       height: 100vw; }
       .X-slide .slider .slide {
         font-size: normal;
-        display: inline-block; } }
+        display: inline-block; }
+
+  #page-bar {
+    left: 50%;
+    top: static;
+    -ms-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    bottom: 10px; }
+    #page-bar li {
+      display: inline-block; } }
 
 /*# sourceMappingURL=index.css.map */
