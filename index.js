@@ -28,9 +28,9 @@ $(function() {
                 $(this).scrollTop(app.initialTop + ymove)
             })
             .on('touchend', function(e) {
-                //var touch = app.touch(e);
-                //app.touchEnd[0]=touch.pageX
-                //app.touchEnd[1]=touch.pageY
+                var touch = app.touch(e);
+                app.touchEnd[0] = touch.pageX
+                app.touchEnd[1] = touch.pageY
                 adjustY()
                 adjustX()
             })
@@ -64,19 +64,19 @@ $(function() {
             })
 
         function pageBar(num) {
-                var lis = $('#page-bar').find('li')
-                lis.css({ fontSize: '15px' })
-                    .eq(num).css({ fontSize: '21px' })
-            }
-            //pc
+            var lis = $('#page-bar').find('li')
+            lis.css({ fontSize: '15px' })
+                .eq(num).css({ fontSize: '21px' })
+        }
+        //pc
         var scrollY = function(deltaY) {
                 var slideHeight = $('.slide').height(),
                     scrollTop = $('#app').scrollTop(),
                     page = Math.round(scrollTop / slideHeight)
                 if (deltaY < 0) {
-                    if(page!=0)
+                    if (page != 0)
                         page--
-                    pageBar(page)
+                        pageBar(page)
                     $('#app').stop().animate({ scrollTop: page * slideHeight })
                 } else if (deltaY > 0) {
                     page++
@@ -88,14 +88,22 @@ $(function() {
         var adjustY = function() {
             var slideHeight = $('.slide').height(),
                 scrollTop = $('#app').scrollTop(),
-                page = Math.round(scrollTop / slideHeight)
+                page = 0
+            if (app.touchEnd[1] - app.touchStart[1] > 0) //up
+                page = Math.round(scrollTop / slideHeight - 0.35)
+            else if (app.touchEnd[1] - app.touchStart[1] < 0)//down
+                page = Math.round(scrollTop / slideHeight + 0.35)
             $('#app').stop()
                 .animate({ scrollTop: page * slideHeight }, function() {})
         }
         var adjustX = function() {
                 var slideWidth = $('.slide').width(),
                     scrollLeft = $('.X-slide').scrollLeft(),
-                    page = Math.round(scrollLeft / slideWidth)
+                    page = 0
+                if (app.touchEnd[0] - app.touchStart[0] > 0) //left
+                    page = Math.round(scrollLeft / slideWidth - 0.35)
+                else if (app.touchEnd[0] - app.touchStart[0] < 0)//right
+                    page = Math.round(scrollLeft / slideWidth + 0.35)
                 pageBar(page)
                 $('.X-slide').stop().animate({ scrollLeft: page * slideWidth })
             }
