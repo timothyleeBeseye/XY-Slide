@@ -65,8 +65,16 @@ $(function() {
 
         function pageBar(num) {
             var lis = $('#page-bar').find('li')
-            lis.css({ fontSize: '15px' })
-                .eq(num).css({ fontSize: '21px' })
+            if(isMobile())
+                lis.css({ fontSize: '12px' }).eq(num).css({ fontSize: '16px' })
+            else
+                lis.css({ fontSize: '15px' }).eq(num).css({ fontSize: '21px' })
+        }
+        function isMobile() {
+            if (window.innerWidth <= 596)
+                return true
+            else
+                return false
         }
         //pc
         var scrollY = function(deltaY) {
@@ -107,12 +115,5 @@ $(function() {
                 pageBar(page)
                 $('.X-slide').stop().animate({ scrollLeft: page * slideWidth })
             }
-            //detact
-        var isMobile = function() {
-            if (window.innerWidth <= 596)
-                return true
-            else
-                return false
-        }
     })()
 })

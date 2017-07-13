@@ -111,6 +111,7 @@ ul {
     transform: translate(-50%, 0);
     bottom: 10px; }
     #page-bar li {
+      font-size: 12px;
       display: inline-block; } }
 
 /*# sourceMappingURL=index.css.map */
