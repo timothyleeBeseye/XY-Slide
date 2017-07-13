@@ -101,6 +101,7 @@ $(function() {
                 page = Math.round(scrollTop / slideHeight - 0.35)
             else if (app.touchEnd[1] - app.touchStart[1] < 0)//down
                 page = Math.round(scrollTop / slideHeight + 0.35)
+            pageBar(page)
             $('#app').stop()
                 .animate({ scrollTop: page * slideHeight }, function() {})
         }
