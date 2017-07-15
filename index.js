@@ -22,15 +22,25 @@ $(function() {
                 app.initialLeft = $('.X-slide').scrollLeft()
             })
             .on('touchmove', function(e) {
-                e.preventDefault()
+               e.preventDefault()
                 var touch = app.touch(e),
                     ymove = app.touchStart[1] - touch.pageY
-                $(this).scrollTop(app.initialTop + ymove)
+                if(ymove>5&&!$('.X-slide').hasClass('Xmoving')){
+                    $(this).addClass('Ymoving')
+                    $(this).scrollTop(app.initialTop + ymove)
+                } else if(ymove<-5&&!$('.X-slide').hasClass('Xmoving')){
+                    $(this).addClass('Ymoving')
+                    $(this).scrollTop(app.initialTop + ymove)
+                } else if($('.X-slide').hasClass('Xmoving')&&$(this).hasClass('Ymoving')){
+                    $(this).removeClass('Ymoving')
+                }                
             })
             .on('touchend', function(e) {
                 var touch = app.touch(e);
                 app.touchEnd[0] = touch.pageX
                 app.touchEnd[1] = touch.pageY
+                $(this).removeClass('Ymoving')
+                $('.X-slide').removeClass('Xmoving')
                 adjustY()
                 adjustX()
             })
@@ -40,7 +50,13 @@ $(function() {
                 e.preventDefault()
                 var touch = app.touch(e),
                     xmove = app.touchStart[0] - touch.pageX
-                $(this).scrollLeft(app.initialLeft + xmove)
+                if(xmove>5&&!$('#app').hasClass('Ymoving')){
+                    $(this).addClass('Xmoving')
+                    $(this).scrollLeft(app.initialLeft + xmove-5)
+                } else if(xmove<-5&&!$('#app').hasClass('Ymoving')){
+                    $(this).addClass('Xmoving')
+                    $(this).scrollLeft(app.initialLeft + xmove+5)
+                }                
             })
 
         $(window)
